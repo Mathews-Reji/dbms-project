@@ -1,0 +1,37 @@
+<!-- home.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIMS Website</title>
+    <link rel="stylesheet" href="home.css">
+</head>
+<body>
+    <header>
+        <div class="nav">
+            <div class="logo"></div>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <h2>Be Perfect !</h2>
+        <h1 class="hims">
+            H<span class="expand">ospital</span>
+            I<span class="expand">nventory</span>
+            M<span class="expand">anagement</span>
+            S<span class="expand">ystem</span>
+        </h1>
+        <p class="subtext">"~Precision in inventory, excellence in healthcare~"</p>
+        <!-- Add an id to the button for JavaScript targeting -->
+        <button id="loginButton" class="cta-btn">Login</button>
+    </div>
+
+    <script>
+        // JavaScript to handle button click and redirect to login page
+        document.getElementById("loginButton").addEventListener("click", function() {
+            window.location.href = "login.html";
+        });
+    </script>
+</body>
+</html>

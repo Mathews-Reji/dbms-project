@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Suppliers</title>
+    <style>
+        /* Basic styling for the page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Styling for the table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+            margin: auto;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+<body>
+    <h1>Manage Suppliers</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Supplier ID</th>
+                <th>Name</th>
+                <th>Contact Person</th>
+                <th>Contact Number</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody id="suppliers-table">
+            <!-- Data will be inserted here by JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+        async function fetchSuppliersData() {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/suppliers');
+                const data = await response.json();
+                
+                const tableBody = document.getElementById('suppliers-table');
+                tableBody.innerHTML = '';
+
+                // Check if there is any data returned
+                if (data.length === 0) {
+                        tableBody.innerHTML = '<tr><td colspan="5">No suppliers found</td></tr>';
+                        return;
+                    }
+
+                data.forEach(supplier => {
+                    const row = `<tr>
+                        <td>${supplier.supplier_id}</td>
+                        <td>${supplier.supplier_name}</td>
+                        <td>${supplier.contactperson}</td>
+                        <td>${supplier.contactnumber}</td>
+                        <td>${supplier.address}</td>
+                    </tr>`;
+                    tableBody.innerHTML += row;
+                });
+            } catch (error) {
+                console.error('Error fetching suppliers data:', error);
+            }
+        }
+        window.onload = fetchSuppliersData;
+    </script>
+</body>
+</html>

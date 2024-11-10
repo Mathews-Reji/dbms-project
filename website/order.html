@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Orders</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<div class="navbar">
+    <h1>Manage Orders</h1>
+    <button onclick="navigateBack()">Back</button>
+</div>
+
+<div class="container">
+    <h2>Select an option below:</h2>
+
+    <div class="card-container">
+        <div class="card" onclick="navigateTo('place-order.html')">
+            <h3>Place Order</h3>
+            <p>Place a new order for inventory items.</p>
+        </div>
+        <div class="card" onclick="navigateTo('track-order.html')">
+            <h3>Track Order</h3>
+            <p>View the status of existing orders.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function navigateTo(page) {
+        window.location.href = page; // Redirects to the specified page
+    }
+
+    function navigateBack() {
+        window.history.back(); // Navigates back to the previous page
+    }
+</script>
+
+</body>
+</html>

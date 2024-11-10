@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #007bff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Department Details</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Department ID</th>
+                <th>Department Name</th>
+                <th>Department Head</th>
+                <th>Contact Number</th>
+            </tr>
+        </thead>
+        <tbody id="department-table">
+            <!-- Data will be inserted here by JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+        // Function to fetch department data from the server and display it in the table
+        async function fetchDepartmentData() {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/departments');
+                const data = await response.json();
+                
+                const tableBody = document.getElementById('department-table');
+                tableBody.innerHTML = '';
+
+                data.forEach(department => {
+                    const row = `<tr>
+                        <td>${department.DepartmentID}</td>
+                        <td>${department.DepartmentName}</td>
+                        <td>${department.DepartmentHead}</td>
+                        <td>${department.ContactNumber}</td>
+                    </tr>`;
+                    tableBody.innerHTML += row;
+                });
+            } catch (error) {
+                console.error('Error fetching department data:', error);
+            }
+        }
+
+        // Fetch data when the page loads
+        window.onload = fetchDepartmentData;
+    </script>
+</body>
+</html>

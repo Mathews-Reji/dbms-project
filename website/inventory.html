@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            color: #007bff;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Current Inventory</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Item ID</th>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Reorder Level</th>
+                <th>Department ID</th>
+            </tr>
+        </thead>
+        <tbody id="inventory-table">
+            <!-- Data will be inserted here by JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+        // Function to fetch inventory data from the server and display it in the table
+        async function fetchInventoryData() {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/inventory');
+                const data = await response.json();
+                
+                const tableBody = document.getElementById('inventory-table');
+                tableBody.innerHTML = '';  // Clear existing rows
+
+                // Loop through the data and populate the table
+                data.forEach(item => {
+                    const row = `<tr>
+                        <td>${item.item_id}</td>
+                        <td>${item.name}</td>
+                        <td>${item.quantity}</td>
+                        <td>${item.reorder_level}</td>
+                        <td>${item.department_id}</td>
+                    </tr>`;
+                    tableBody.innerHTML += row;  // Add each row to the table body
+                });
+            } catch (error) {
+                console.error('Error fetching inventory data:', error);
+            }
+        }
+
+        // Fetch data when the page loads
+        window.onload = fetchInventoryData;
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Inventory Management - Homepage</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<div class="navbar">
+    <h1>Hospital Inventory Management</h1>
+    <button onclick="logout()">Logout</button>
+</div>
+
+<div class="container">
+    <h2>Welcome to the Hospital Inventory Management System</h2>
+    <p>Select an option below to get started:</p>
+
+    <div class="card-container">
+        <div class="card" onclick="navigateTo('inventory.html')">
+            <h3>View Inventory</h3>
+            <p>Check current stock levels and details of inventory items.</p>
+        </div>
+        <div class="card" onclick="navigateTo('order.html')">
+            <h3>Manage Orders</h3>
+            <p>Place, track, and manage orders with suppliers.</p>
+        </div>
+        <div class="card" onclick="navigateTo('supplier.html')">
+            <h3>Manage Suppliers</h3>
+            <p>View and edit supplier details and contact information.</p>
+        </div>
+        <div class="card" onclick="navigateTo('department.html')">
+            <h3>Manage Departments</h3>
+            <p>Organize inventory by hospital departments.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function navigateTo(page) {
+        window.location.href = page; // Redirects to the specified page
+    }
+
+    function logout() {
+        navigateTo('login.html')
+    }
+</script>
+
+</body>
+</html>
